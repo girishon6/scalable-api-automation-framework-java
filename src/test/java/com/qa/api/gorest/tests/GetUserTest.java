@@ -45,7 +45,7 @@ public class GetUserTest extends BaseTest {
 	@Test
 	public void getSingleUserTest() {
 
-		String id="8430441";
+		String id="8435836";
 
 		Response response = restClient.get(GOREST_BASE_URI, AuthType.BEARER_TOKEN, ContentType.JSON, GOREST_ENDPOINT+"/"+id,
 				null, null);

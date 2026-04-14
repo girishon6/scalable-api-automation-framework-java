@@ -1,8 +1,7 @@
 package com.qa.api.base;
 
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Listeners;
 
 import com.qa.api.client.RestClient;
 
@@ -30,7 +29,7 @@ public class BaseTest {
 	public static final String AMADEUS_END_POINT="/v1/reference-data/locations";
 	public static final String GOREST_XML_ENDPOINT="/public/v2/users.xml";
 	
-	@BeforeTest
+	@BeforeClass
 	public void setUp() {
 		restClient=new RestClient();
 	}
