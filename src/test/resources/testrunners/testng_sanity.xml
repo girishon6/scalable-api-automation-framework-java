@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Sanity API test suite" verbose="4">
+
+	<listeners>
+		<listener class-name="com.aventstack.chaintest.plugins.ChainTestListener" />
+
+	</listeners>
+
+
+	<test name="Go rest API Test">
+		<classes>
+			<class name="com.qa.api.gorest.tests.GetUserTest" />
+		</classes>
+	</test>
+
+	<test name="Contacts API Test">
+		<classes>
+			<class name="com.qa.api.contacts.tests.GetAllContactsTest" />
+		</classes>
+	</test>
+
+	<test name="Basic Auth Test">
+		<classes>
+			<class name="com.qa.api.basicauth.tests.BasicAuthTest" />
+
+		</classes>
+	</test>
+
+	<test name="Amadeus Test">
+		<classes>
+			<class name="com.qa.api.amadeus.tests.AmadeusOAuth2Test" />
+		</classes>
+	</test>
+
+</suite>
