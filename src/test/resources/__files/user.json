@@ -1,0 +1,13 @@
+{
+    "_id":1,
+    "name": "girish",
+    "gender":"male",
+    "age":34,
+    "status":"inactive",
+    "address": {
+    	"addr1":"#983 Kanchveer nagar",
+    	"addr2":"Mutaga Extension",
+    	"city":"belgaum",
+    	"state":"KA"
+    }
+}

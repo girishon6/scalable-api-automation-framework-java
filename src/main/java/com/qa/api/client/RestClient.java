@@ -122,6 +122,21 @@ public class RestClient {
 		return response;
 	}
 	
+	@Step("Post created for wiremock test purpose")
+	public <T> Response post(String baseUrl,String endPoint, AuthType authType, 
+			ContentType contentType,T bodyContent,
+			Map<String,String>queryParams,
+			Map<String,String>pathParams) {
+		
+		RequestSpecification reqSpec=setupRequest(baseUrl, authType, contentType);
+		applyParams(reqSpec,queryParams,pathParams);
+		reqSpec.body(bodyContent);
+		Response response=reqSpec.post(endPoint).then().spec(responseSpec_200or201).extract().response();
+		response.prettyPrint();
+		
+		return response;
+	}
+	
 	/**
 	 * This method is used to create a resource in server side. It uses the File body type.
 	 * @param baseUrl
