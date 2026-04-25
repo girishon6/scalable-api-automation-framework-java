@@ -3,39 +3,42 @@
 <suite name="API test regression suite" verbose="4">
 
 	<listeners>
-		<listener class-name="com.aventstack.chaintest.plugins.ChainTestListener"/>
-		
+		<listener
+			class-name="com.aventstack.chaintest.plugins.ChainTestListener" />
+
 	</listeners>
 
 
 	<test name="Go rest API Test">
 		<classes>
 			<class name="com.qa.api.gorest.tests.CreateUserTest" />
- 			<class name="com.qa.api.gorest.tests.GetUserTest" />
-			<class name="com.qa.api.gorest.tests.GetUserWithXMLPathTest" /> 
+			<class name="com.qa.api.gorest.tests.GetUserTest" />
+			<class name="com.qa.api.gorest.tests.GetUserWithXMLPathTest" />
 		</classes>
 	</test>
- 
- 	<test name="Contacts API Test">
+
+	<test name="Contacts API Test">
 		<classes>
-			<class name="com.qa.api.contacts.tests.ContactsAPITestWithJsonPath"/>
-			<class name="com.qa.api.contacts.tests.ContactsLoginTest"/>
-			<class name="com.qa.api.contacts.tests.CreateContactsTest"/>
-			<class name="com.qa.api.contacts.tests.GetAllContactsAndDeserialiseTest"/>
-			<class name="com.qa.api.contacts.tests.GetAllContactsTest"/>
+			<class
+				name="com.qa.api.contacts.tests.ContactsAPITestWithJsonPath" />
+			<class name="com.qa.api.contacts.tests.ContactsLoginTest" />
+			<class name="com.qa.api.contacts.tests.CreateContactsTest" />
+			<class
+				name="com.qa.api.contacts.tests.GetAllContactsAndDeserialiseTest" />
+			<class name="com.qa.api.contacts.tests.GetAllContactsTest" />
 		</classes>
 	</test>
-	
+
 	<test name="Basic Auth Test">
 		<classes>
-			<class name="com.qa.api.basicauth.tests.BasicAuthTest"/>
-			
+			<class name="com.qa.api.basicauth.tests.BasicAuthTest" />
+
 		</classes>
 	</test>
-	
+
 	<test name="Amadeus Test">
 		<classes>
-			<class name="com.qa.api.amadeus.tests.AmadeusOAuth2Test"/>
+			<class name="com.qa.api.amadeus.tests.AmadeusOAuth2Test" />
 		</classes>
 	</test>
 
