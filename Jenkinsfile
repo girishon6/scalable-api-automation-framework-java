@@ -39,7 +39,7 @@ pipeline
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/girishon6/scalable-api-automation-framework-java.git'
-                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_regression.xml"
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_regression.xml -Denv=qa"
                     
                 }
             }
@@ -83,13 +83,11 @@ pipeline
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/girishon6/scalable-api-automation-framework-java.git'
-                   bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml"
+                   bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=stg"
                     
                 }
             }
         }
-        
-        
         
         stage('Publish sanity ChainTest Report'){
             steps{
@@ -103,10 +101,48 @@ pipeline
             }
         }
         
+        stage("Deploy to UAT"){
+            steps{
+                echo("deploy to UAT")
+            }
+        }
+        
+        stage('UAT Automation Test on Stage') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    git 'https://github.com/girishon6/scalable-api-automation-framework-java.git'
+                   bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=uat"
+                    
+                }
+            }
+        }
+        
         
         stage("Deploy to PROD"){
             steps{
                 echo("deploy to PROD")
+            }
+        }
+        
+        stage('Prod Automation Test on Production') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    git 'https://github.com/girishon6/scalable-api-automation-framework-java.git'
+                   bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod"
+                    
+                }
+            }
+        }
+        
+        stage('Publish prod ChainTest Report'){
+            steps{
+                     publishHTML([allowMissing: false,
+                                  alwaysLinkToLastBuild: false, 
+                                  keepAll: true, 
+                                  reportDir: 'target/chaintest', 
+                                  reportFiles: 'Index.html', 
+                                  reportName: 'HTML Prod ChainTest Report', 
+                                  reportTitles: ''])
             }
         }
         

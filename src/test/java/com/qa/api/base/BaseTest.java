@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
 import com.qa.api.client.RestClient;
+import com.qa.api.manager.ConfigManager;
 import com.qa.api.mocking.WiremockSetup;
 
 import io.qameta.allure.restassured.AllureRestAssured;
@@ -16,9 +17,10 @@ public class BaseTest {
 	
 	public RestClient restClient;
 	
+	public static String GOREST_BASE_URI;
 	
 	/*Base URI*/
-	public static final String GOREST_BASE_URI="https://gorest.co.in";
+	//public static final String GOREST_BASE_URI="https://gorest.co.in";
 	public static final String CONTACTS_BASE_URI="https://thinking-tester-contact-list.herokuapp.com";
 	public static final String BASICAUTH_BASE_URI="https://the-internet.herokuapp.com";
 	public static final String AMADEUS_BASE_URI="https://test.api.amadeus.com";
@@ -41,11 +43,13 @@ public class BaseTest {
 	 */
 	
 	@BeforeSuite
-	public void setupAllureReport() {
+	public void initSetup() {
 		RestAssured.filters(new AllureRestAssured());
+		GOREST_BASE_URI=ConfigManager.getter("baseurl.gorest").trim();
+		
 	}
 	
-	@BeforeClass
+	@BeforeTest
 	public void beforeTestSetup() {
 		restClient=new RestClient();
 		//WiremockSetup.startWireMockServer();
